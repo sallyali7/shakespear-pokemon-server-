@@ -1,9 +1,10 @@
 import express from 'express'
 import { connectDb } from './helpers.js'
+import Pokemon from './models/pokemon.js'
 
 // invoke express library 
 const app = express()
-const port = 4000
+const port = 4001
 
 // allows apps to requests bodies
 
@@ -13,7 +14,13 @@ app.use('/', (req, _res, next) => {
   console.log(`incoming requests: ${req.method} : ${req.url}`)
   next()
 })
-// async function communicated with the database
+
+// Pokemon Controller
+
+app.get('/pokemon', async (_req, res) => {
+  const pokemons = await Pokemon.find()
+  return res.status(200).json(pokemons)
+})
 
 async function startServer() {
   try {
