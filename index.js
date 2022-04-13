@@ -1,5 +1,5 @@
 import express from 'express'
-import mongoose from 'mongoose'
+import { connectDb } from './helpers.js'
 
 // invoke express library 
 const app = express()
@@ -17,7 +17,7 @@ app.use('/', (req, _res, next) => {
 
 async function startServer() {
   try {
-    mongoose.connect('mongodb://0.0.0.0/pokemon-db', {}) 
+    await connectDb() 
     console.log('mongo connected')
     app.listen(port, () => console.log(`listening at ${port}`))
   } catch (err) {
