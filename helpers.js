@@ -7,3 +7,21 @@ export function connectDb() {
     useUnifiedTopology: true,
   })
 }
+// empties database
+export function truncateDb() {
+  if (mongoose.connection.readyState !== 0) {
+    const { collections } = mongoose.connection
+
+    const promises = Object.keys(collections).map(collection =>
+      mongoose.connection.collection(collection).deleteMany({})
+    )
+
+    return Promise.all(promises)
+  }
+}
+// Disconnect from database
+export function disconnectDb() {
+  if (mongoose.connection.readyState !== 0) {
+    return mongoose.disconnect()
+  }
+}
