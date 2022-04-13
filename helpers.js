@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
-
+import { dbURI } from './config/enviroment.js'
 
 export function connectDb() {
-  return mongoose.connect('mongodb://127.0.0.1/pokemon-db-truelayer', {
+  return mongoose.connect(dbURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
