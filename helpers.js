@@ -5,6 +5,7 @@ export function connectDb() {
   return mongoose.connect(dbURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    family: 4,
   })
 }
 // empties database

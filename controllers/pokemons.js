@@ -10,14 +10,18 @@ async function pokemonIndex(_req, res, next) {
 }
 
 async function pokemonShow(req, res) {
+  const { pokemonId } = req.params
   try {
-    const individualPokemon = await Pokemon.findById(req.params.id)
+    const individualPokemon = await Pokemon.findById(pokemonId)
     if (!individualPokemon){
       res.status(404).json({ message: 'pokemon not found' })
+      return
     }
-    return res.status(200).json(individualPokemon)
+    res.status(200).json(individualPokemon)
+    return
   } catch (err) {
-    return res.status(404).json({ message: 'pokemon not found' })
+    res.status(404).json({ message: 'pokemon not found' })
+    return
   }
 }
 

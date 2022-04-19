@@ -8,7 +8,7 @@ router.route('/pokemon')
   .get(pokemon.index)
 
 router
-  .route('/pokemon/:id')
+  .route('/pokemon/:pokemonId')
   .get(pokemon.show)
 
 export default router
